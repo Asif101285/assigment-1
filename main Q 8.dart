@@ -1,58 +1,63 @@
-import 'dart:io';
+// Q8: Create a marksheet using operators of at least 5 subjects and output
+// should have Student Name, Student Roll Number, Class, Percentage, Grade
+// Obtained etc.
+// i.e: Percentage should be rounded upto 2 decimal places only.
 
 void main() {
-  // Function to calculate percentage and grade
-  List<dynamic> calculatePercentageAndGrade(List<int> marks) {
-    int totalMarks = marks.reduce((a, b) => a + b);
-    double percentage = (totalMarks / (marks.length * 100)) * 100;
-    double roundedPercentage = double.parse(percentage.toStringAsFixed(2));
+  // Student information
+  String studentName = "Mohammad Asif";
+  int rollNumber = 229304;
+  String studentClass = "13th";
+// subjects information
+  String Subject1 = "HTML";
+  String Subject2 = "Css";
+  String Subject3 = "TypeScript";
+  String Subject4 = "JavaScript";
+  String Subject5 = "TailWind Css";
+  String Subject6 = "Python";
+  String Subject7 = "Node Js";
 
-    String grade = '';
-    if (roundedPercentage >= 90) {
-      grade = 'A';
-    } else if (roundedPercentage >= 80) {
-      grade = 'B';
-    } else if (roundedPercentage >= 70) {
-      grade = 'C';
-    } else if (roundedPercentage >= 60) {
-      grade = 'D';
-    } else {
-      grade = 'F';
-    }
+  // Marks in subjects
+  int HTML = 89;
+  int Css = 91;
+  int TypeScript = 80;
+  int JavaScript = 85;
+  int TailWindCss = 90;
+  int Python = 75;
+  int NextJs = 78;
 
-    return [roundedPercentage, grade];
+  // Calculate total marks and percentage
+  int totalMarks =
+      HTML + Css + TypeScript + JavaScript + TailWindCss + Python + NextJs;
+  double percentage = (totalMarks / 700) * 100;
+
+  // Determine grade based on percentage
+  String grade;
+  if (percentage >= 90) {
+    grade = "A+";
+  } else if (percentage >= 80) {
+    grade = "A";
+  } else if (percentage >= 70) {
+    grade = "B";
+  } else if (percentage >= 60) {
+    grade = "C";
+  } else {
+    grade = "Fail";
   }
 
-  // Get user input
-  stdout.write("Enter student name: ");
-  String name = stdin.readLineSync()!;
-
-  stdout.write("Enter student roll number: ");
-  String rollNumber = stdin.readLineSync()!;
-
-  stdout.write("Enter class: ");
-  String className = stdin.readLineSync()!;
-
-  List<int> marks = [];
-  for (int i = 1; i <= 5; i++) {
-    stdout.write("Enter marks for subject $i: ");
-    marks.add(int.parse(stdin.readLineSync()!));
-  }
-
-  // Calculate percentage and grade
-  List<dynamic> result = calculatePercentageAndGrade(marks);
-  double percentage = result[0];
-  String grade = result[1];
-
-  // Print marksheet
-  print("\n===== Marksheet =====");
-  print("Student Name: $name");
+  // Print the marksheet
+  print("<----- Marksheet ----->");
+  print("Student Name: $studentName");
   print("Roll Number: $rollNumber");
-  print("Class: $className");
-  print("Subject-wise Marks:");
-  for (int i = 0; i < 5; i++) {
-    print("  Subject ${i + 1}: ${marks[i]}");
-  }
-  print("Percentage: $percentage%");
+  print("Class: $studentClass");
+  print("$Subject1 Marks: $HTML");
+  print("$Subject2 Marks: $Css");
+  print("$Subject3 Marks: $TypeScript");
+  print("$Subject4 Marks: $JavaScript");
+  print("$Subject5 Marks: $TailWindCss");
+  print("$Subject6 Marks: $Python");
+  print("$Subject7 Marks: $NextJs");
+  print("Total Marks: $totalMarks");
+  print("Percentage: ${percentage.toStringAsFixed(2)}%");
   print("Grade: $grade");
 }
